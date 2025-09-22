@@ -3,7 +3,7 @@ import { Box, Card, Container, Typography } from "@mui/material"
 
 
 
-const MusicList = ({ musics }) => {
+const MusicList = ({ musics, setMusics }) => {
     return (
         <Container maxWidth="sm">
             <Box sx={{
@@ -26,7 +26,7 @@ const MusicList = ({ musics }) => {
                     gap: "15px"
                 }}>
                     {musics ? musics.map(music =>
-                        <MusicCard  musicLink={music.musicLink} musicName={music.musicName}/>
+                        <MusicCard  musicLink={music.musicLink} musicName={music.musicName} id={music.id} setMusics={setMusics}/>
                     ): ""}
                 </Card>
             </Box>

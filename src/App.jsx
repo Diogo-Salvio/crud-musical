@@ -8,7 +8,7 @@ import MusicList from './components/MusicList'
 
 function App() {
 
-  const [musics, setMusics] = useState([{musicName: "Let me Love You", musicLink: "www.google.com"}])
+  const [musics, setMusics] = useState([{musicName: "Let me Love You", musicLink: "www.google.com", id: 1}])
 
   useEffect(() => {
     console.log(musics)
@@ -20,7 +20,7 @@ function App() {
       <AddMusic
         setMusics={setMusics}
       />
-      <MusicList  musics={musics}/>
+      <MusicList  musics={musics} setMusics={setMusics}/>
     </>
   )
 }
