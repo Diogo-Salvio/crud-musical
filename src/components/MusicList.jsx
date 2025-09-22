@@ -3,7 +3,7 @@ import { Box, Card, Container, Typography } from "@mui/material"
 
 
 
-const MusicList = () => {
+const MusicList = ({ musics }) => {
     return (
         <Container maxWidth="sm">
             <Box sx={{
@@ -14,8 +14,7 @@ const MusicList = () => {
                 marginTop: '20px'
 
             }}>
-
-                <Typography variant="h5" component="h4">Suas Músicas: </Typography>
+                <Typography variant="h5" component="h4">Suas Músicas:</Typography>
                 <Card sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -23,9 +22,12 @@ const MusicList = () => {
                     textAlign: 'left',
                     alignItems: 'center',
                     padding: '20px',
-                    width: "80%"
+                    width: "80%",
+                    gap: "15px"
                 }}>
-                    <MusicCard musicLink={"www.google.com"} musicTitle={"Google"} />
+                    {musics ? musics.map(music =>
+                        <MusicCard  musicLink={music.musicLink} musicName={music.musicName}/>
+                    ): ""}
                 </Card>
             </Box>
         </Container>
