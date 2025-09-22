@@ -1,10 +1,10 @@
-import { Card } from "@mui/material"
+import { Card, CardContent, Typography } from "@mui/material"
 
 
 
 const MusicCard = ({musicLink, musicTitle}) => {
     return (
-        <Card>
+        <Card sx={{ width: "80%" }}>
             <CardContent sx={{ height: '100%' }}>
                 <Typography variant="h5" component="div">
                     {musicTitle}
