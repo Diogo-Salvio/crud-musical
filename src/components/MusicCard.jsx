@@ -5,7 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 const MusicCard = ({ musicLink, musicName, id, setMusics}) => {
 
     const handleDelete = () => {
-            setMusics(prev => prev.filter (music => music.id !== id ))
+            setMusics(prev => prev.filter(music => music.id !== id ))
     }
 
     return (

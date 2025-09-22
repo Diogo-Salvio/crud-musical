@@ -20,7 +20,7 @@ const AddMusic = ({ setMusics}) => {
     }
 
     const sendMusic = () => {
-        const newMusicId = {...newMusic, key: Date.now()}
+        const newMusicId = {...newMusic, id: Date.now()}
         setMusics((prev) => [...prev, newMusicId])
         setNewMusic({musicName: "", musicLink: ""})
     }
