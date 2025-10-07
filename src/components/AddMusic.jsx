@@ -3,7 +3,7 @@ import { useState } from "react"
 
 
 
-const AddMusic = ({ setMusics}) => {
+const AddMusic = ({ setMusics }) => {
 
     const [newMusic, setNewMusic] = useState({
         musicName: "",
@@ -20,9 +20,17 @@ const AddMusic = ({ setMusics}) => {
     }
 
     const sendMusic = () => {
-        const newMusicId = {...newMusic, id: Date.now()}
-        setMusics((prev) => [...prev, newMusicId])
-        setNewMusic({musicName: "", musicLink: ""})
+        const newMusicKeys = Object.values(newMusic)
+        if (!newMusicKeys[0].trim()) {
+            alert('A música precisa de um titulo')
+        } else if (!newMusicKeys[1].trim()) {
+            alert('A música precisa de um link!')
+        } else {
+            const newMusicId = { ...newMusic, id: Date.now() }
+            setMusics((prev) => [...prev, newMusicId])
+            setNewMusic({ musicName: "", musicLink: "" })
+        }
+
     }
 
 
@@ -62,10 +70,10 @@ const AddMusic = ({ setMusics}) => {
                         onChange={handleChange}
                     />
 
-                    <Button 
-                    variant="contained" 
-                    onClick={sendMusic}
-                    sx={{marginTop: "20px"}}>Adicionar</Button>
+                    <Button
+                        variant="contained"
+                        onClick={sendMusic}
+                        sx={{ marginTop: "20px" }}>Adicionar</Button>
 
 
                 </Card>
