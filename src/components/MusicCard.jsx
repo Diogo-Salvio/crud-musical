@@ -17,6 +17,7 @@ const MusicCard = ({ musicLink, musicName, id, setMusics }) => {
         setMusics((prev) => prev.map((music) => music.id === id ? {...music, [event.target.name]: event.target.value} : music))
     }
 
+
     return (
         <Card sx={{ width: "80%" }}>
             {editState ?

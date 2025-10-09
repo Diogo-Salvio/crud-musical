@@ -19,6 +19,46 @@ const AddMusic = ({ setMusics }) => {
         }))
     }
 
+    function extractYouTubeID(urlString) {
+        if (!urlString) return null;
+
+        // Trim e garantir protocolo para new URL()
+        let input = urlString.trim();
+        if (!/^[a-zA-Z][a-zA-Z\d+\-.]*:\/\//.test(input)) {
+            input = 'https://' + input; // facilita aceitar "youtu.be/ID" ou "www.youtube.com/..."
+        }
+        try {
+            const url = new URL(input);
+            const hostname = url.hostname.replace(/^www\./i, '').toLowerCase();
+
+            let id = null;
+            const pathSegments = url.pathname.split('/').filter(Boolean); // remove segs vazios
+            // youtu.be/ID
+            if (hostname === 'youtu.be') {
+                id = pathSegments[0]; // primeiro segmento
+            }
+            // youtube.com subdomínios
+            else if (hostname === 'youtube.com' || hostname.endsWith('.youtube.com')) {
+                // watch?v=ID
+                id = url.searchParams.get('v');
+                // /shorts/ID
+                if (!id && pathSegments[0] === 'shorts') id = pathSegments[1];
+                // /embed/ID or /v/ID
+                if (!id) {
+                    const embedIdx = pathSegments.indexOf('embed');
+                    const vIdx = pathSegments.indexOf('v');
+                    if (embedIdx !== -1 && pathSegments[embedIdx + 1]) id = pathSegments[embedIdx + 1];
+                    else if (vIdx !== -1 && pathSegments[vIdx + 1]) id = pathSegments[vIdx + 1];
+                }
+            }
+            // Validate ID (YouTube IDs geralmente têm 11 caracteres [A-Za-z0-9_-])
+            if (id && /^[A-Za-z0-9_-]{11}$/.test(id)) return id;
+            return null;
+        } catch {
+            return null;
+        }
+    }
+
     const sendMusic = () => {
         const newMusicKeys = Object.values(newMusic)
         const youtubeRegex = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:.*[?&]v=)|youtu\.be\/)([A-Za-z0-9_-]{11})(?:[&?#].*)?$/;
@@ -28,7 +68,8 @@ const AddMusic = ({ setMusics }) => {
         } else if (!youtubeRegex.test(newMusicKeys[1].trim())) {
             alert('Insira um link válido!')
         } else {
-            const newMusicId = { ...newMusic, id: Date.now() }
+            const videoId = extractYouTubeID(newMusicKeys[1].trim())
+            const newMusicId = { ...newMusic, id: Date.now(), videoId }
             setMusics((prev) => [...prev, newMusicId])
             setNewMusic({ musicName: "", musicLink: "" })
         }
