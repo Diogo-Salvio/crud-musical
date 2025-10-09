@@ -25,9 +25,15 @@ const MusicList = ({ musics, setMusics }) => {
                     width: "80%",
                     gap: "15px"
                 }}>
-                    {musics ? musics.map(music =>
-                        <MusicCard  musicLink={music.musicLink} musicName={music.musicName} id={music.id} setMusics={setMusics} videoId={music.videoId}/>
-                    ): ""}
+                    {musics && musics.length > 0
+                        ?
+                        musics.map(music =>
+                            <MusicCard musicLink={music.musicLink} key={music.id} musicName={music.musicName} id={music.id} setMusics={setMusics} videoId={music.videoId} />
+                        )
+                        :
+                        <Typography variant="h6" component="h5">Você ainda não cadastrou nenhuma música</Typography>
+                    }
+
                 </Card>
             </Box>
         </Container>
