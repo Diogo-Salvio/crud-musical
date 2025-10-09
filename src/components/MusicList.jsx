@@ -26,7 +26,7 @@ const MusicList = ({ musics, setMusics }) => {
                     gap: "15px"
                 }}>
                     {musics ? musics.map(music =>
-                        <MusicCard  musicLink={music.musicLink} musicName={music.musicName} id={music.id} setMusics={setMusics}/>
+                        <MusicCard  musicLink={music.musicLink} musicName={music.musicName} id={music.id} setMusics={setMusics} videoId={music.videoId}/>
                     ): ""}
                 </Card>
             </Box>

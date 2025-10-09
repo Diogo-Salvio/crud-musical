@@ -1,11 +1,11 @@
-import { Card, CardContent, Typography, IconButton, Box, TextField} from "@mui/material"
+import { Card, CardContent, Typography, IconButton, Box, TextField, CardMedia} from "@mui/material"
 import DeleteIcon from "@mui/icons-material/Delete"
 import EditIcon from '@mui/icons-material/Edit'
 import CheckIcon from '@mui/icons-material/Check';
 import { useState } from "react"
 
 
-const MusicCard = ({ musicLink, musicName, id, setMusics }) => {
+const MusicCard = ({ musicLink, musicName, id, videoId, setMusics }) => {
 
     const [editState, setEditState] = useState(false)
 
@@ -17,6 +17,7 @@ const MusicCard = ({ musicLink, musicName, id, setMusics }) => {
         setMusics((prev) => prev.map((music) => music.id === id ? {...music, [event.target.name]: event.target.value} : music))
     }
 
+    const thumbVideo = `https://img.youtube.com/vi/${videoId}/0.jpg`
 
     return (
         <Card sx={{ width: "80%" }}>
@@ -49,11 +50,21 @@ const MusicCard = ({ musicLink, musicName, id, setMusics }) => {
                 <CardContent>
                     <Box display="flex" alignItems="center" justifyContent="space-between">
                         <Box sx={{maxWidth: "180px"}}>
+                            <CardMedia 
+                            sx={{
+                                height: 100,
+                                width: "100%",
+                                objectFit: "cover",
+                                borderRadius: "18px",
+                                aspectRatio: "16/9",
+                                marginBottom: "10px"
+                            }}
+                            component="img"
+                            image={thumbVideo}
+                            alt={musicName}
+                            />
                             <Typography variant="h6" component="h5">
                                 {musicName}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                {musicLink}
                             </Typography>
                         </Box>
                         <Box>

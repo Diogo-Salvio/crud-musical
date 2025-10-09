@@ -8,7 +8,7 @@ import MusicList from './components/MusicList'
 
 function App() {
 
-  const [musics, setMusics] = useState([{musicName: "Let me Love You", musicLink: "www.google.com", id: 1}])
+  const [musics, setMusics] = useState([{musicName: "Let me Love You", musicLink: "www.google.com", id: 1, videoId: "euCqAq6BRa4"}])
 
   useEffect(() => {
     console.log(musics)
