@@ -21,10 +21,12 @@ const AddMusic = ({ setMusics }) => {
 
     const sendMusic = () => {
         const newMusicKeys = Object.values(newMusic)
+        const youtubeRegex = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:.*[?&]v=)|youtu\.be\/)([A-Za-z0-9_-]{11})(?:[&?#].*)?$/;
+
         if (!newMusicKeys[0].trim()) {
             alert('A música precisa de um titulo')
-        } else if (!newMusicKeys[1].trim()) {
-            alert('A música precisa de um link!')
+        } else if (!youtubeRegex.test(newMusicKeys[1].trim())) {
+            alert('Insira um link válido!')
         } else {
             const newMusicId = { ...newMusic, id: Date.now() }
             setMusics((prev) => [...prev, newMusicId])

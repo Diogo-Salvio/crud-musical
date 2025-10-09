@@ -47,7 +47,7 @@ const MusicCard = ({ musicLink, musicName, id, setMusics }) => {
                 :
                 <CardContent>
                     <Box display="flex" alignItems="center" justifyContent="space-between">
-                        <Box>
+                        <Box sx={{maxWidth: "180px"}}>
                             <Typography variant="h6" component="h5">
                                 {musicName}
                             </Typography>
