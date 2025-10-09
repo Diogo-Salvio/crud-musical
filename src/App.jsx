@@ -29,12 +29,12 @@ function App() {
             <TabList onChange={handleChange}  centered>
               <Tab label="Musicas adicionadas" value="0" />
               <Tab label="Adicionar uma Música" value="1" />
-              <Tab label="Área do Admin" value="1" />
+              <Tab label="Área do Admin" value="2" />
             </TabList>
           </Box>
-          <TabPanel value="1"><MusicList  musics={musics} setMusics={setMusics}/></TabPanel>
-          <TabPanel value="2"><AddMusic setMusics={setMusics}/></TabPanel>
-          <TabPanel value="3">Item Three</TabPanel>
+          <TabPanel value="0"><MusicList  musics={musics} setMusics={setMusics}/></TabPanel>
+          <TabPanel value="1"><AddMusic setMusics={setMusics}/></TabPanel>
+          <TabPanel value="2">Item Three</TabPanel>
         </TabContext>
       </Box>
 
