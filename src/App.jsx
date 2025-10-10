@@ -5,6 +5,7 @@ import { TabContext, TabPanel, TabList } from "@mui/lab";
 import AddMusic from './components/AddMusic'
 import Header from './components/Header'
 import MusicList from './components/MusicList'
+import AdiminTab from './components/AdminTab'
 
 
 
@@ -28,13 +29,13 @@ function App() {
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList onChange={handleChange}  centered>
               <Tab label="Musicas adicionadas" value="0" />
-              <Tab label="Adicionar uma Música" value="1" />
-              <Tab label="Área do Admin" value="2" />
+              <Tab label="Sugerir uma Música" value="1" />
+              <Tab label="Painel do Admin" value="2" />
             </TabList>
           </Box>
           <TabPanel value="0"><MusicList  musics={musics} setMusics={setMusics}/></TabPanel>
           <TabPanel value="1"><AddMusic setMusics={setMusics}/></TabPanel>
-          <TabPanel value="2">Item Three</TabPanel>
+          <TabPanel value="2"><AdiminTab /></TabPanel>
         </TabContext>
       </Box>
 
